@@ -27,10 +27,13 @@ def build_standings_list(week=1):
             'points': float(doc['fantasy_content']['team']['team_points']['total'])
         })
 
+    teams = sorted(teams, key=lambda x: x['points'], reverse=True)
+
+    week = int(week)
     if week > 1:
         teams = teams[:-(week-1)]
 
-    return sorted(teams, key=lambda x: x['points'], reverse=True)
+    return teams
 
 
 def get_standings_list():
