@@ -9,20 +9,17 @@ from deependeliminator.standings import build_standings_list
 sched = BlockingScheduler()
 
 
-def do_cache():
-    oauth = redis_store.get('oauth')
-    if not oauth:
-        raise Exception('No OAuth creds')
+def do_cache(load_oauth_from_redis=True, write_oauth_to_redis=True):
 
-    with open('oauth.json', 'w+') as fd:
-        fd.write(oauth.decode('utf-8'))
-
-    redis_store.setex('standings', 7200, json.dumps(build_standings_list(os.environ.get('WEEK', 1))))
-
-    with open('oauth.json', 'r') as fd:
-        s = fd.read()
-        if s:
-            redis_store.set('oauth', s)
+    redis_store.setex(
+        'standings',
+        7200,
+        json.dumps(build_standings_list(
+            week=os.environ.get('WEEK', 1),
+            load_oauth_from_redis=load_oauth_from_redis,
+            write_oauth_to_redis=write_oauth_to_redis
+        ))
+    )
 
 @sched.scheduled_job(
     'cron',
