@@ -1,2 +1,2 @@
 web: gunicorn wsgi:app
-cacher: python cacher.py
+workers: celery worker --beat -A application.celery
