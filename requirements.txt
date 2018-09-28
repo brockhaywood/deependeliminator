@@ -4,5 +4,6 @@ celery==4.2.1
 Flask-Redis==0.3.0
 flask-rebar==1.0.5
 gunicorn==19.9.0
+newrelic==4.4.1.104
 yahoo-oauth==0.1.9
 xmltodict==0.11.0
