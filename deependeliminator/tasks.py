@@ -1,13 +1,12 @@
 import celery
 import json
-import os
-from standings import get_week
 
 
 @celery.task()
 def cache_standings(load_oauth_from_redis=True, write_oauth_to_redis=True):
     from deependeliminator.standings import build_standings_list
     from application import redis_store
+    from deependeliminator.standings import get_week
 
     redis_store.setex(
         'standings',
