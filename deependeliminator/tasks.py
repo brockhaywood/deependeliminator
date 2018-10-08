@@ -1,6 +1,7 @@
 import celery
 import json
 import os
+from standings import get_week
 
 
 @celery.task()
@@ -12,7 +13,7 @@ def cache_standings(load_oauth_from_redis=True, write_oauth_to_redis=True):
         'standings',
         7200,
         json.dumps(build_standings_list(
-            week=os.environ.get('WEEK', 1),
+            week=get_week(),
             load_oauth_from_redis=load_oauth_from_redis,
             write_oauth_to_redis=write_oauth_to_redis
         ))

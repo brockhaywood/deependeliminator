@@ -1,3 +1,4 @@
+import datetime
 import json
 import os
 import xmltodict
@@ -60,6 +61,14 @@ def get_standings_list():
     if standings_str:
         standings = json.loads(standings_str.decode('utf-8'))
     else:
-        standings = build_standings_list(os.environ.get('WEEK', 1))
+        standings = build_standings_list(get_week())
 
     return standings
+
+
+def get_week():
+
+    opening_day = datetime.datetime.strptime(os.environ.get('OPENING_DAY', '2018-09-06'), '%Y-%m-%d')
+    now = datetime.datetime.now()
+
+    return ((now - opening_day).days / 7) + 1
