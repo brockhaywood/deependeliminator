@@ -15,7 +15,7 @@ redis_store = FlaskRedis()
 import deependeliminator.api_routes  # noqa
 
 def create_app(name):
-    app = Flask(name)
+    app = Flask(name, static_url_path='')
     app.config.from_object('config.Config')
     rebar.init_app(app=app)
     redis_store.init_app(app)

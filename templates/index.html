@@ -1,20 +1,34 @@
 <html>
     <head>
         <title>DeepEnd Eliminator Standings</title>
-        <style type="text/css" media="screen">
-            ol > :last-child {
-                color: red;
+        <script src="js/sortable.js"></script>
+
+        <style type="text/css">
+            table.sortable thead {
+                background-color:#eee;
+                color:#666666;
+                font-weight: bold;
+                cursor: default;
             }
         </style>
     </head>
     <body>
         <h1>Standings for week {{ week }}</h1>
-        <ol>
-            {% for team in standings %}
-            <li>
-                {{ team['name'] }} - {{ team['points'] }}
-            </li>
-            {% endfor %}
-        </ol>
+        <table class="sortable">
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>Points</th>
+                    <th>Original Projected Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for team in standings %}
+                <tr>
+                    <td>{{ team['name'] }}</td><td>{{ team['points'] }}</td><td>{{ team['projected_points'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </body>
 </html>

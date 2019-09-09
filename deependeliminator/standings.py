@@ -42,7 +42,8 @@ def build_standings_list(week=1, load_oauth_from_redis=True, write_oauth_to_redi
 
         teams.append({
             'name': doc['fantasy_content']['team']['name'],
-            'points': float(doc['fantasy_content']['team']['team_points']['total'])
+            'points': float(doc['fantasy_content']['team']['team_points']['total']),
+            'projected_points': float(doc['fantasy_content']['team']['team_projected_points']['total'])
         })
 
     if write_oauth_to_redis:
