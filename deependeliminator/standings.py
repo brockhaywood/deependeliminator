@@ -23,7 +23,7 @@ def build_standings_list(week=1, load_oauth_from_redis=True, write_oauth_to_redi
     teams = []
 
     doc = xmltodict.parse(oauth.session.get(
-        'https://fantasysports.yahooapis.com/fantasy/v2/league/380.l.298570/teams').text)
+        'https://fantasysports.yahooapis.com/fantasy/v2/league/390.l.298570/teams').text)
 
     team_keys = [team['team_key'] for team in doc['fantasy_content']['league']['teams']['team']]
 
