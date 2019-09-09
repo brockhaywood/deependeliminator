@@ -67,7 +67,7 @@ def get_standings_list():
 
 def get_week():
 
-    opening_day = datetime.datetime.strptime(os.environ.get('OPENING_DAY', '2018-09-06'), '%Y-%m-%d')
+    opening_day = datetime.datetime.strptime(os.environ.get('OPENING_DAY', '2019-09-06'), '%Y-%m-%d')
     now = datetime.datetime.now()
 
     return int(((now - opening_day).days / 7) + 1)
