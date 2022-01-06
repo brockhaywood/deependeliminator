@@ -1,6 +1,6 @@
 blinker==1.4
 bugsnag==3.4.3
-celery==4.2.1
+celery==5.2.2
 Flask-Redis==0.3.0
 flask-rebar==1.0.5
 gunicorn==19.9.0
